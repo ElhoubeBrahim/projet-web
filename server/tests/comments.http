@@ -1,0 +1,20 @@
+### Get all comments by post id
+GET http://localhost:8000/api/articles/1/comments
+
+### Get comment by id
+GET http://localhost:8000/api/comments/1
+
+### Create comment
+POST http://localhost:8000/api/articles/1/comments
+Content-Type: application/json
+
+{}
+
+### Update comment
+PATCH http://localhost:8000/api/comments/1
+Content-Type: application/json
+
+{}
+
+### Delete comment
+DELETE http://localhost:8000/api/comments/1
