@@ -75,4 +75,12 @@ export default class ArticlesService {
       pagination: paginationResponse,
     };
   }
+
+  public static async findById(id: number): Promise<Article | null> {
+    return await prisma.article.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
 }

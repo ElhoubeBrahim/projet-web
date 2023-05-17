@@ -42,7 +42,23 @@ export default class ArticlesController {
   }
 
   public static async show(req: Request, res: Response) {
-    res.send("Get Article");
+    // Get article id
+    const id = Number(req.params.id);
+
+    // Get article from service
+    const article = await ArticlesService.findById(id);
+    if (!article) {
+      return res.status(404).json({
+        status: "error",
+        message: "Article not found",
+      });
+    }
+
+    // Return article as JSON response
+    res.json({
+      status: "success",
+      data: article,
+    });
   }
 
   public static async update(req: Request, res: Response) {
