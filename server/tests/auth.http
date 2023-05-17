@@ -1,0 +1,19 @@
+### Register new user
+POST http://localhost:8000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "test",
+    "email": "test@test.com",
+    "password": "password",
+    "profession": "Web Developer"
+}
+
+### Login
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "password"
+}
