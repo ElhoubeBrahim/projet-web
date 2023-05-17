@@ -1,7 +1,7 @@
-import * as articlesSeeder from "./seeders/articles";
-import * as categoriesSeeder from "./seeders/categories";
-import * as commentsSeeder from "./seeders/comments";
-import * as usersSeeder from "./seeders/users";
+import articlesSeeder from "./seeders/articles";
+import categoriesSeeder from "./seeders/categories";
+import commentsSeeder from "./seeders/comments";
+import usersSeeder from "./seeders/users";
 
 const seeders = {
   usersSeeder,
@@ -12,10 +12,11 @@ const seeders = {
 };
 
 async function main() {
-  for (const [name, seeder] of Object.entries(seeders)) {
+  for (const [name, Seeder] of Object.entries(seeders)) {
     console.log();
     console.log(`\t🌱 Seeding ${name}...`);
 
+    const seeder = new Seeder();
     await seeder.init();
     await seeder.run();
     await seeder.close();
