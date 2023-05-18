@@ -55,17 +55,9 @@ export default class ArticlesController {
   }
 
   public static async show(req: Request, res: Response) {
-    // Get article id
+    // Get article
     const id = Number(req.params.id);
-
-    // Get article from service
     const article = await ArticlesService.findById(id);
-    if (!article) {
-      return res.status(404).json({
-        status: "error",
-        message: "Article not found",
-      });
-    }
 
     // Return article as JSON response
     res.json({
@@ -74,18 +66,9 @@ export default class ArticlesController {
     });
   }
 
-  public static async update(req: Request, res: Response) {
-    // Check if article exists
-    const id = Number(req.params.id);
-    const article = await ArticlesService.findById(id);
-    if (!article || article.authorId !== req.user.id) {
-      return res.status(404).json({
-        status: "error",
-        message: "Article not found",
-      });
-    }
-
+  public static async update(req: Request, res: Response) {    
     // Update article
+    const id = Number(req.params.id);
     const articleData: UpdateArticleRequest = req.body;
     const updatedArticle = await ArticlesService.update(id, articleData);
 
@@ -96,18 +79,9 @@ export default class ArticlesController {
     });
   }
 
-  public static async delete(req: Request, res: Response) {
-    // Check if article exists
-    const id = Number(req.params.id);
-    const article = await ArticlesService.findById(id);
-    if (!article || article.authorId !== req.user.id) {
-      return res.status(404).json({
-        status: "error",
-        message: "Article not found",
-      });
-    }
-
+  public static async delete(req: Request, res: Response) {    
     // Delete article
+    const id = Number(req.params.id);
     const deletedArticle = await ArticlesService.delete(id);
 
     // Return success response
@@ -131,17 +105,7 @@ export default class ArticlesController {
     res.end(file);
   }
 
-  public static async uploadThumbnail(req: Request, res: Response) {
-    // Check if article exists
-    const id = Number(req.params.id);
-    const article = await ArticlesService.findById(id);
-    if (!article || article.authorId !== req.user.id) {
-      return res.status(404).json({
-        status: "error",
-        message: "Article not found",
-      });
-    }
-
+  public static async uploadThumbnail(req: Request, res: Response) {    
     // Check if file exists
     if (!req.file) {
       return res.status(400).json({
@@ -149,9 +113,10 @@ export default class ArticlesController {
         message: "No file uploaded",
       });
     }
-
+    
     // Update article
     const baseURL = `${req.protocol}://${req.get("host")}`;
+    const id = Number(req.params.id);
     const updatedArticle = await ArticlesService.update(id, {
       image: `${baseURL}/api/articles/thumbnail/${req.file.filename}`,
     });

@@ -5,15 +5,6 @@ import CommentsService from "../services/comments";
 export default class CommentsController {
   public static async index(req: Request, res: Response) {
     const articleId = Number(req.params.id);
-    const article = await ArticlesService.findById(articleId);
-    if (!article) {
-      res.status(404).json({
-        status: "error",
-        message: "Article not found",
-      });
-      return;
-    }
-
     const comments = await CommentsService.getAll(articleId);
     res.json({
       status: "success",
@@ -23,15 +14,6 @@ export default class CommentsController {
 
   public static async create(req: Request, res: Response) {
     const articleId = Number(req.params.id);
-    const article = await ArticlesService.findById(articleId);
-    if (!article) {
-      res.status(404).json({
-        status: "error",
-        message: "Article not found",
-      });
-      return;
-    }
-
     const comment = await CommentsService.create(req.body, articleId);
     res.json({
       status: "success",

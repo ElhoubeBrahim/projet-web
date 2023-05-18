@@ -9,6 +9,7 @@ import {
   validateUpdateArticle,
 } from "../validation/articles";
 import multer from "multer";
+import articleExistsMiddleware from "../middlewares/articleExists";
 
 const articlesRoutes = express.Router();
 const upload = multer({
@@ -31,11 +32,12 @@ articlesRoutes.post(
   validateCreateArticle,
   ArticlesController.create,
 );
-articlesRoutes.get("/:id", ArticlesController.show);
+articlesRoutes.get("/:id", articleExistsMiddleware, ArticlesController.show);
 articlesRoutes.patch(
   "/:id",
   authMiddleware,
   authorMiddleware,
+  articleExistsMiddleware,
   validateUpdateArticle,
   ArticlesController.update,
 );
@@ -43,6 +45,7 @@ articlesRoutes.delete(
   "/:id",
   authMiddleware,
   authorMiddleware,
+  articleExistsMiddleware,
   ArticlesController.delete,
 );
 
@@ -51,13 +54,19 @@ articlesRoutes.post(
   "/:id/thumbnail",
   authMiddleware,
   authorMiddleware,
+  articleExistsMiddleware,
   upload.single("image"),
   ArticlesController.uploadThumbnail,
 );
 
-articlesRoutes.get("/:id/comments", CommentsController.index);
+articlesRoutes.get(
+  "/:id/comments",
+  articleExistsMiddleware,
+  CommentsController.index,
+);
 articlesRoutes.post(
   "/:id/comments",
+  articleExistsMiddleware,
   validateCreateComment,
   CommentsController.create,
 );
