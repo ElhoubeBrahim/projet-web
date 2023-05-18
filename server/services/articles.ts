@@ -22,6 +22,10 @@ export default class ArticlesService {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        author: true,
+        categories: true,
+      }
     };
 
     // Filter by categgories
@@ -86,6 +90,10 @@ export default class ArticlesService {
       where: {
         id,
       },
+      include: {
+        author: true,
+        categories: true,
+      }
     });
   }
 
