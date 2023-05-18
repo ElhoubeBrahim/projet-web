@@ -10,3 +10,7 @@ body {
   font-family: "Source Serif 4", serif;
   @apply text-text;
 }
+
+img {
+  user-select: none;
+}
