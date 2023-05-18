@@ -18,7 +18,11 @@ export default class ArticlesService {
     },
   ): Promise<{ articles: Article[]; pagination: Pagination | null }> {
     // Define options object
-    const options: Prisma.ArticleFindManyArgs = {};
+    const options: Prisma.ArticleFindManyArgs = {
+      orderBy: {
+        createdAt: "desc",
+      },
+    };
 
     // Filter by categgories
     if (filters && filters.categories) {

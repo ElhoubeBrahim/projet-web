@@ -9,6 +9,9 @@ export default class CommentsService {
       where: {
         articleId,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
   }
 
