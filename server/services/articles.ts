@@ -117,6 +117,7 @@ export default class ArticlesService {
       data: {
         title: article.title || undefined,
         content: article.content || undefined,
+        image: article.image || undefined,
         published: article.published || undefined,
         categories: {
           set: article.categoryIds?.map((id) => ({ id })),

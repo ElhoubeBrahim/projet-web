@@ -7,6 +7,7 @@ export type CreateArticleRequest = {
 export type UpdateArticleRequest = {
   title?: string;
   content?: string;
+  image?: string;
   categoryIds?: number[];
   published?: boolean;
 };

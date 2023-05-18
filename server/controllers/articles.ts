@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import ArticlesService from "../services/articles";
 import { CreateArticleRequest, UpdateArticleRequest } from "../types/articles";
+import fs from "fs";
+import path from "path";
 
 export default class ArticlesController {
   public static async index(req: Request, res: Response) {
@@ -113,6 +115,51 @@ export default class ArticlesController {
       status: "success",
       message: "Article deleted successfully",
       data: deletedArticle,
+    });
+  }
+
+  public static async getThumbnail(req: Request, res: Response) {
+    // Get thumbnail name
+    const name = req.params.name;
+
+    // Get image file
+    const file = fs.readFileSync(
+      path.join(__dirname, `../storage/articles/${name}`),
+    );
+
+    // Return image file as response
+    res.end(file);
+  }
+
+  public static async uploadThumbnail(req: Request, res: Response) {
+    // Check if article exists
+    const id = Number(req.params.id);
+    const article = await ArticlesService.findById(id);
+    if (!article || article.authorId !== req.user.id) {
+      return res.status(404).json({
+        status: "error",
+        message: "Article not found",
+      });
+    }
+
+    // Check if file exists
+    if (!req.file) {
+      return res.status(400).json({
+        status: "error",
+        message: "No file uploaded",
+      });
+    }
+
+    // Update article
+    const baseURL = `${req.protocol}://${req.get("host")}`;
+    const updatedArticle = await ArticlesService.update(id, {
+      image: `${baseURL}/api/articles/thumbnail/${req.file.filename}`,
+    });
+
+    // Return updated article as JSON response
+    res.json({
+      status: "success",
+      data: updatedArticle,
     });
   }
 }
