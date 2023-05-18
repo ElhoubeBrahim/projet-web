@@ -11,3 +11,9 @@ export type UpdateArticleRequest = {
   categoryIds?: number[];
   published?: boolean;
 };
+
+export type CreateCommentRequest = {
+  name: string;
+  email: string;
+  content: string;
+};

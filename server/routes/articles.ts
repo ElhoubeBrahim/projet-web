@@ -5,6 +5,7 @@ import authMiddleware from "../middlewares/auth";
 import authorMiddleware from "../middlewares/author";
 import {
   validateCreateArticle,
+  validateCreateComment,
   validateUpdateArticle,
 } from "../validation/articles";
 import multer from "multer";
@@ -55,6 +56,10 @@ articlesRoutes.post(
 );
 
 articlesRoutes.get("/:id/comments", CommentsController.index);
-articlesRoutes.post("/:id/comments", CommentsController.create);
+articlesRoutes.post(
+  "/:id/comments",
+  validateCreateComment,
+  CommentsController.create,
+);
 
 export { articlesRoutes };

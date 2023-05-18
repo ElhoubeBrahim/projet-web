@@ -49,3 +49,26 @@ export const validateUpdateArticle = (
 
   next();
 };
+
+export const validateCreateComment = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const validation = new Validator(req.body, {
+    name: ["required", "string", "max:255"],
+    email: ["required", "email"],
+    content: ["required", "string"],
+  });
+
+  if (validation.fails()) {
+    res.status(422).json({
+      status: "error",
+      message: "Validation failed",
+      errors: validation.errors.all(),
+    });
+    return;
+  }
+
+  next();
+};

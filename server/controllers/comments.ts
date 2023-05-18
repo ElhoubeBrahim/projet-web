@@ -1,23 +1,59 @@
 import { Request, Response } from "express";
+import ArticlesService from "../services/articles";
+import CommentsService from "../services/comments";
 
 export default class CommentsController {
   public static async index(req: Request, res: Response) {
-    res.send("List Comments");
+    const articleId = Number(req.params.id);
+    const article = await ArticlesService.findById(articleId);
+    if (!article) {
+      res.status(404).json({
+        status: "error",
+        message: "Article not found",
+      });
+      return;
+    }
+
+    const comments = await CommentsService.getAll(articleId);
+    res.json({
+      status: "success",
+      data: comments,
+    });
   }
 
   public static async create(req: Request, res: Response) {
-    res.send("Create Comment");
+    const articleId = Number(req.params.id);
+    const article = await ArticlesService.findById(articleId);
+    if (!article) {
+      res.status(404).json({
+        status: "error",
+        message: "Article not found",
+      });
+      return;
+    }
+
+    const comment = await CommentsService.create(req.body, articleId);
+    res.json({
+      status: "success",
+      message: "Comment created successfully",
+      data: comment,
+    });
   }
 
   public static async show(req: Request, res: Response) {
-    res.send("Get Comment");
-  }
+    const commentId = Number(req.params.id);
+    const comment = await CommentsService.getById(commentId);
+    if (!comment) {
+      res.status(404).json({
+        status: "error",
+        message: "Comment not found",
+      });
+      return;
+    }
 
-  public static async update(req: Request, res: Response) {
-    res.send("Update Comment");
-  }
-
-  public static async delete(req: Request, res: Response) {
-    res.send("Destroy Comment");
+    res.json({
+      status: "success",
+      data: comment,
+    });
   }
 }

@@ -8,13 +8,8 @@ GET http://localhost:8000/api/comments/1
 POST http://localhost:8000/api/articles/1/comments
 Content-Type: application/json
 
-{}
-
-### Update comment
-PATCH http://localhost:8000/api/comments/1
-Content-Type: application/json
-
-{}
-
-### Delete comment
-DELETE http://localhost:8000/api/comments/1
+{
+    "name": "Bob",
+    "email": "bbb@cccc.dd",
+    "content": "Comment content"
+}
