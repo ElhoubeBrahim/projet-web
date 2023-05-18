@@ -80,6 +80,3 @@ export default class AuthController {
     });
   }
 }
-
-// TODO: Implement the register and login methods
-// TODO: Add auth middlewares to the routes

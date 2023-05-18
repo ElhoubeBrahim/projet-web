@@ -7,14 +7,26 @@ GET http://localhost:8000/api/articles/1
 ### Create article
 POST http://localhost:8000/api/articles
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoidGVzdCIsImF2YXRhciI6bnVsbCwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkWGxzU3VRRllrWGNrVExGUi4yZEwzTzJWTGp0d0lxd2U1TU1OWnVFVGY2WHh2d3JydW1ZS3kiLCJwcm9mZXNzaW9uIjoiV2ViIERldmVsb3BlciIsInJvbGUiOiJBVVRIT1IiLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTE3VDE3OjIwOjA0Ljg4N1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTE3VDE3OjIwOjA0Ljg4N1oiLCJpYXQiOjE2ODQ0MTU4MjIsImV4cCI6MTY4NDUwMjIyMn0.1m5g2oPdFVdXLypS1oXZtazNGXIe9bAPCBVVD1SkMoc
 
-{}
+{
+    "title": "Hello World",
+    "content": "Hello World",
+    "categoryIds": [4, 6]
+}
 
 ### Update article
-PATCH http://localhost:8000/api/articles/1
+PATCH http://localhost:8000/api/articles/31
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoidGVzdCIsImF2YXRhciI6bnVsbCwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkWGxzU3VRRllrWGNrVExGUi4yZEwzTzJWTGp0d0lxd2U1TU1OWnVFVGY2WHh2d3JydW1ZS3kiLCJwcm9mZXNzaW9uIjoiV2ViIERldmVsb3BlciIsInJvbGUiOiJBVVRIT1IiLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTE3VDE3OjIwOjA0Ljg4N1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTE3VDE3OjIwOjA0Ljg4N1oiLCJpYXQiOjE2ODQ0MTU4MjIsImV4cCI6MTY4NDUwMjIyMn0.1m5g2oPdFVdXLypS1oXZtazNGXIe9bAPCBVVD1SkMoc
 
-{}
+{
+    "title": "Hello World - Edited",
+    // "content": "Hello World",
+    // "categoryIds": [4, 6],
+    "published": true
+}
 
 ### Delete article
-DELETE http://localhost:8000/api/articles/1
+DELETE http://localhost:8000/api/articles/31
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoidGVzdCIsImF2YXRhciI6bnVsbCwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkWGxzU3VRRllrWGNrVExGUi4yZEwzTzJWTGp0d0lxd2U1TU1OWnVFVGY2WHh2d3JydW1ZS3kiLCJwcm9mZXNzaW9uIjoiV2ViIERldmVsb3BlciIsInJvbGUiOiJBVVRIT1IiLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTE3VDE3OjIwOjA0Ljg4N1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTE3VDE3OjIwOjA0Ljg4N1oiLCJpYXQiOjE2ODQ0MTU4MjIsImV4cCI6MTY4NDUwMjIyMn0.1m5g2oPdFVdXLypS1oXZtazNGXIe9bAPCBVVD1SkMoc

@@ -1,5 +1,6 @@
-import { Article } from "@prisma/client";
+import { Article, User } from "@prisma/client";
 import { PrismaClient, Prisma } from "@prisma/client";
+import { CreateArticleRequest, UpdateArticleRequest } from "../types/articles";
 import { Pagination } from "../types/pagination";
 
 const prisma = new PrismaClient();
@@ -78,6 +79,54 @@ export default class ArticlesService {
 
   public static async findById(id: number): Promise<Article | null> {
     return await prisma.article.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+
+  public static async create(
+    article: CreateArticleRequest,
+    author: User,
+  ): Promise<Article> {
+    return await prisma.article.create({
+      data: {
+        title: article.title,
+        image: "",
+        content: article.content,
+        author: {
+          connect: {
+            id: author.id,
+          },
+        },
+        categories: {
+          connect: article.categoryIds.map((id) => ({ id })),
+        },
+      },
+    });
+  }
+
+  public static async update(
+    id: number,
+    article: UpdateArticleRequest,
+  ): Promise<Article | null> {
+    return await prisma.article.update({
+      where: {
+        id,
+      },
+      data: {
+        title: article.title || undefined,
+        content: article.content || undefined,
+        published: article.published || undefined,
+        categories: {
+          set: article.categoryIds?.map((id) => ({ id })),
+        },
+      },
+    });
+  }
+
+  public static async delete(id: number): Promise<Article | null> {
+    return await prisma.article.delete({
       where: {
         id,
       },

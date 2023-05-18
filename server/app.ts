@@ -12,7 +12,7 @@ const port = process.env.PORT || 8000;
 declare global {
   namespace Express {
     interface Request {
-      user?: User | null;
+      user: User;
     }
   }
 }
