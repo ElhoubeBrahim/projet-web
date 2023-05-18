@@ -8,7 +8,20 @@ const prisma = new PrismaClient();
 
 export default class CategoriesService {
   public static async getAll(): Promise<Category[]> {
-    return await prisma.category.findMany();
+    return await prisma.category.findMany({
+      orderBy: {
+        articles: {
+          _count: "desc",
+        },
+      },
+      include: {
+        _count: {
+          select: {
+            articles: true,
+          },
+        },
+      },
+    });
   }
 
   public static async create(data: CreateCategoryRequest): Promise<Category> {
