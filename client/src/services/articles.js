@@ -9,3 +9,8 @@ export const getArticles = async (page = 1, limit = 10) => {
   const response = await axios.get(`/articles?per_page=${limit}&page=${page}`);
   return response.data.data;
 };
+
+export const getArticle = async (id) => {
+  const response = await axios.get(`/articles/${id}`);
+  return response.data.data;
+};

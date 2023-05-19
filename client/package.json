@@ -16,6 +16,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
+    "sass": "^1.62.1",
     "vue": "^3.2.47",
     "vue-router": "^4.2.1",
     "vue-skeletor": "^1.0.6"

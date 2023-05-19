@@ -22,7 +22,9 @@ export default {
       }"
     />
     <div class="col-span-2 flex flex-col">
-      <h3 class="font-semibold text-lg">{{ article.title }}</h3>
+      <router-link :to="`/read/${article.id}`">
+        <h3 class="font-semibold text-lg">{{ article.title }}</h3>
+      </router-link>
       <div class="flex items-center gap-2 text-placeholder mb-4">
         <span>
           {{

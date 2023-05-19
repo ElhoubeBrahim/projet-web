@@ -27,3 +27,15 @@ img {
     rgba(255, 255, 255, 0)
   );
 }
+
+.article-content h2 {
+  font-size: 1.2rem;
+  font-family: "Noto Sans", sans-serif;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  font-weight: bold;
+}
+
+.article-content p {
+  margin-bottom: 0.5rem;
+}
