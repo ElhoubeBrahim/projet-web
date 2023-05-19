@@ -2,6 +2,8 @@
 import { getArticle, getArticles } from "../services/articles";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import ArticleCard from "../components/ArticleCard.vue";
+import CommentsModal from "../components/CommentsModal.vue";
+import { getComments } from "../services/comments";
 
 export default {
   name: "Explore",
@@ -9,24 +11,27 @@ export default {
     return {
       loading: true,
       article: {},
+      comments: [],
       relatedArticles: [],
+      commentsModalOpen: false,
     };
   },
   async mounted() {
     this.article = await getArticle(this.$route.params.id);
+    this.comments = await getComments(this.$route.params.id);
     this.relatedArticles = await getArticles(1, 3);
     this.loading = false;
   },
   methods: {
     formatDistanceToNow,
   },
-  components: { ArticleCard },
+  components: { ArticleCard, CommentsModal },
 };
 </script>
 
 <template>
-  <div class="read-article pt-20">
-    <div class="container mx-auto px-4" v-if="!loading">
+  <div class="read-article pt-20" v-if="!loading">
+    <div class="container mx-auto px-4">
       <div class="md:px-20">
         <h2 class="text-center text-3xl font-brand text-secondary mb-8">
           {{ article.title }}
@@ -64,6 +69,7 @@ export default {
         <div class="flex justify-between mb-10">
           <div
             class="flex gap-4 items-center bg-primary px-4 py-2 cursor-pointer"
+            @click="commentsModalOpen = true"
           >
             <font-awesome-icon icon="comment" class="text-secondary" />
             <span class="text-secondary">
@@ -110,5 +116,16 @@ export default {
         </div>
       </div>
     </div>
+    <CommentsModal
+      :article="article"
+      :comments="comments"
+      :open="commentsModalOpen"
+      :close="
+        () => {
+          commentsModalOpen = false;
+        }
+      "
+      @commentCreated="comments.unshift($event)"
+    />
   </div>
 </template>

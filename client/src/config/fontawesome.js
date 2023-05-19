@@ -4,6 +4,7 @@ import {
   faComment,
   faEnvelope,
   faSearch,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -21,4 +22,5 @@ library.add(
   faTwitter,
   faLinkedin,
   faWhatsapp,
+  faUser,
 );
