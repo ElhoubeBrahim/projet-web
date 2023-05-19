@@ -19,6 +19,13 @@ export default class UserService {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        _count: {
+          select: {
+            articles: true,
+          },
+        },
+      },
     };
 
     // Filter by role
