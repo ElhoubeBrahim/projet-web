@@ -106,7 +106,7 @@ export default {
             <li v-for="link in navLinks" :key="link.path">
               <router-link
                 :to="link.path"
-                class="block p-2 font-semibold whitespace-nowrap text-text hover:text-secondary"
+                class="block p-2 font-medium whitespace-nowrap text-text hover:text-secondary"
               >
                 {{ link.name }}
               </router-link>

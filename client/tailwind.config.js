@@ -9,6 +9,8 @@ export default {
         text: "#444444",
         success: "#00B87C",
         danger: "#E74C3C",
+        placeholder: "#888888",
+        "primary-light": "#E1C5AC30",
       },
       fontFamily: {
         brand: ["'Playfair Display'", "serif"],

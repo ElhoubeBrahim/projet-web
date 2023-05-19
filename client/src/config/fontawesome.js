@@ -1,4 +1,4 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelope, faSearch } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faSearch, faBars);
+library.add(faSearch, faBars, faEnvelope);

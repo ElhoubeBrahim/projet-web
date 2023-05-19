@@ -1,0 +1,40 @@
+<svg width="1440" height="700" viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_125_598)">
+<mask id="mask0_125_598" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="700">
+<path d="M0 700L1440 700V0L0 0V700Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_125_598)">
+<path d="M1440 700L758.02 700L1440 407.3V700Z" fill="white" fill-opacity="0.1"/>
+<path d="M1440 407.3L758.02 700H482.83L1440 296.79V407.3Z" fill="white" fill-opacity="0.075"/>
+<path d="M1440 296.79L482.83 700H371.97L1440 241.92V296.79Z" fill="white" fill-opacity="0.05"/>
+<path d="M1440 241.92L371.97 700H107.02L1440 138.44V241.92Z" fill="white" fill-opacity="0.025"/>
+<path d="M0 -3.05176e-05H198.47L0 264.16L0 -3.05176e-05Z" fill="#7A5C3C" fill-opacity="0.1"/>
+<path d="M0 264.16L198.47 -3.05176e-05H386L0 416.02V264.16Z" fill="#7A5C3C" fill-opacity="0.075"/>
+<path d="M0 416.02L386 0H672.05L0 591.34V416.02Z" fill="#7A5C3C" fill-opacity="0.05"/>
+<path d="M-6.10352e-05 591.34L672.05 0L1178.05 0L-6.10352e-05 647.57V591.34Z" fill="#7A5C3C" fill-opacity="0.025"/>
+</g>
+</g>
+<g clip-path="url(#clip1_125_598)">
+<mask id="mask1_125_598" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="700">
+<path d="M1440 0L0 0L0 700H1440V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_125_598)">
+<path d="M0 0L681.98 0L0 292.7L0 0Z" fill="white" fill-opacity="0.1"/>
+<path d="M0 292.7L681.98 0L957.17 0L0 403.21L0 292.7Z" fill="white" fill-opacity="0.075"/>
+<path d="M0 403.21L957.17 0L1068.03 0L0 458.08L0 403.21Z" fill="white" fill-opacity="0.05"/>
+<path d="M0 458.08L1068.03 0L1332.98 0L0 561.56L0 458.08Z" fill="white" fill-opacity="0.025"/>
+<path d="M1440 700H1241.53L1440 435.84V700Z" fill="#7A5C3C" fill-opacity="0.1"/>
+<path d="M1440 435.84L1241.53 700H1054L1440 283.98V435.84Z" fill="#7A5C3C" fill-opacity="0.075"/>
+<path d="M1440 283.98L1054 700H767.95L1440 108.66V283.98Z" fill="#7A5C3C" fill-opacity="0.05"/>
+<path d="M1440 108.66L767.95 700H261.95L1440 52.43V108.66Z" fill="#7A5C3C" fill-opacity="0.025"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_125_598">
+<rect width="1440" height="700" fill="white" transform="matrix(-1 0 0 -1 1440 700)"/>
+</clipPath>
+<clipPath id="clip1_125_598">
+<rect width="1440" height="700" fill="white"/>
+</clipPath>
+</defs>
+</svg>
