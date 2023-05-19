@@ -25,7 +25,12 @@ export default class ArticlesService {
       include: {
         author: true,
         categories: true,
-      }
+        _count: {
+          select: {
+            comments: true,
+          },
+        },
+      },
     };
 
     // Filter by categgories
@@ -93,7 +98,7 @@ export default class ArticlesService {
       include: {
         author: true,
         categories: true,
-      }
+      },
     });
   }
 
