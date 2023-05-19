@@ -1,5 +1,5 @@
 <script>
-import Footer from './components/Footer.vue';
+import Footer from "./components/Footer.vue";
 import Header from "./components/Header.vue";
 
 export default {
@@ -8,6 +8,16 @@ export default {
     Header,
     Footer,
   },
+  data() {
+    return {
+      showFooter: true,
+    };
+  },
+  watch: {
+    $route(to, from) {
+      this.showFooter = to.meta.showFooter;
+    },
+  },
 };
 </script>
 
@@ -15,6 +25,6 @@ export default {
   <div>
     <Header />
     <router-view />
-    <Footer />
+    <Footer v-if="showFooter" />
   </div>
 </template>

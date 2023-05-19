@@ -3,7 +3,7 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 export default {
   name: "ArticleCard",
-  props: ["article"],
+  props: ["article", "thumbnail"],
   methods: {
     formatDistanceToNow,
   },
@@ -12,7 +12,15 @@ export default {
 
 <template>
   <article class="flex gap-4">
-    <img :src="article.image" alt="" class="h-[200px] w-[200px] object-cover" />
+    <img
+      :src="article.image"
+      alt=""
+      :class="{
+        'object-cover shrink-0': true,
+        'h-[200px] w-[200px]': thumbnail !== 'large',
+        'h-[250px] w-[400px]': thumbnail === 'large',
+      }"
+    />
     <div class="col-span-2 flex flex-col">
       <h3 class="font-semibold text-lg">{{ article.title }}</h3>
       <div class="flex items-center gap-2 text-placeholder mb-4">

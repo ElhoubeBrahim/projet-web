@@ -6,11 +6,24 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   @apply font-content text-text;
 }
 
 img {
   user-select: none;
+}
+
+.vue-skeletor {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+.vue-skeletor:not(.vue-skeletor--shimmerless):after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0)
+  );
 }
