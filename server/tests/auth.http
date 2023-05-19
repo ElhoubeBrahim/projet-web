@@ -17,3 +17,6 @@ Content-Type: application/json
     "email": "test@test.com",
     "password": "password"
 }
+
+### Get users list
+GET http://localhost:8000/api/auth/users

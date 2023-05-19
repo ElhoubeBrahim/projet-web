@@ -6,6 +6,35 @@ import { LoginRequest, UserRequest } from "../types/user";
 import jwt from "jsonwebtoken";
 
 export default class AuthController {
+  public static async getUsers(req: Request, res: Response) {
+    // Get pagination params from query string
+    const page = Number(req.query.page) || 1;
+    const per_page = Number(req.query.per_page);
+
+    // Get filters from query string
+    const role = req.query.search
+      ? req.query.search == "admin"
+        ? "ADMIN"
+        : "AUTHOR"
+      : undefined;
+
+    const { users, pagination } = await UserService.getAll(
+      {
+        page,
+        per_page,
+      },
+      {
+        role,
+      },
+    );
+
+    res.status(200).json({
+      status: "success",
+      data: users,
+      pagination,
+    });
+  }
+
   public static async register(req: Request, res: Response) {
     // Get user data
     const userData: UserRequest = {

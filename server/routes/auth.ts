@@ -4,6 +4,7 @@ import { validateRegister } from "../validation/auth";
 
 const authRoutes = express.Router();
 
+authRoutes.get("/users", AuthController.getUsers);
 authRoutes.post("/register", validateRegister, AuthController.register);
 authRoutes.post("/login", AuthController.login);
 
