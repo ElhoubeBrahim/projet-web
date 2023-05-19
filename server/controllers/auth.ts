@@ -25,6 +25,7 @@ export default class AuthController {
       },
       {
         role,
+        featured: req.query.featured != undefined,
       },
     );
 

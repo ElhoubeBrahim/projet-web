@@ -13,12 +13,19 @@ export default class UserService {
     },
     filters?: {
       role?: "ADMIN" | "AUTHOR";
+      featured?: boolean;
     },
   ): Promise<{ users: User[]; pagination: Pagination | null }> {
     const options: Prisma.UserFindManyArgs = {
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: filters?.featured
+        ? {
+            articles: {
+              _count: "desc",
+            },
+          }
+        : {
+            createdAt: "desc",
+          },
       include: {
         _count: {
           select: {
