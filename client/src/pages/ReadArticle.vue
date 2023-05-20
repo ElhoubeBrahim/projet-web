@@ -1,5 +1,5 @@
 <script>
-import { getArticle, getArticles } from "../services/articles";
+import { getArticle, getArticles, getRelatedArticles } from "../services/articles";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import ArticleCard from "../components/ArticleCard.vue";
 import CommentsModal from "../components/CommentsModal.vue";
@@ -19,7 +19,7 @@ export default {
   async mounted() {
     this.article = await getArticle(this.$route.params.id);
     this.comments = await getComments(this.$route.params.id);
-    this.relatedArticles = await getArticles(1, 4);
+    this.relatedArticles = await getRelatedArticles(this.article, 4);
     this.loading = false;
   },
   methods: {

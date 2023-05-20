@@ -26,7 +26,10 @@ export default {
     };
   },
   async mounted() {
-    this.articles = await getArticles(this.page);
+    this.articles = await getArticles({
+      page: this.page,
+      limit: 10,
+    });
     this.categories = await getCategories();
 
     // Infinite Scroll
@@ -42,7 +45,10 @@ export default {
     async loadMore() {
       this.loading = true;
       this.page++;
-      const articles = await getArticles(this.page);
+      const articles = await getArticles({
+        page: this.page,
+        limit: 10,
+      });
       if (articles.length === 0) {
         this.finished = true;
       }
