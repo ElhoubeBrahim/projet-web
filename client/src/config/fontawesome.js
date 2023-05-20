@@ -3,6 +3,7 @@ import {
   faBars,
   faComment,
   faEnvelope,
+  faLock,
   faSearch,
   faSpinner,
   faUser,
@@ -25,4 +26,5 @@ library.add(
   faWhatsapp,
   faUser,
   faSpinner,
+  faLock,
 );

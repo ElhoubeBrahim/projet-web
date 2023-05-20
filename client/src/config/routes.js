@@ -3,6 +3,7 @@ import Home from "../pages/Home.vue";
 import Explore from "../pages/Explore.vue";
 import ReadArticle from "../pages/ReadArticle.vue";
 import Profile from "../pages/Profile.vue";
+import Login from "../pages/auth/Login.vue";
 
 const routes = [
   { path: "/", component: Home, meta: { showFooter: true } },
@@ -14,6 +15,7 @@ const routes = [
   },
   { path: "/read/:id", component: ReadArticle, meta: { showFooter: true } },
   { path: "/profile/:id", component: Profile, meta: { showFooter: false } },
+  { path: "/login", component: Login, meta: { showFooter: true } },
 ];
 
 const router = VueRouter.createRouter({
