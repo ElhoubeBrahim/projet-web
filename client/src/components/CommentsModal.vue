@@ -12,12 +12,15 @@ export default {
         email: "",
         content: "",
       },
+      loading: false,
     };
   },
   methods: {
     async postComment() {
+      this.loading = true;
       const newComment = await createComment(this.article.id, this.comment);
       this.$emit("commentCreated", newComment);
+      this.loading = false;
     },
   },
   components: { CommentCard },
@@ -70,8 +73,17 @@ export default {
             class="absolute top-3 left-4 transform text-secondary"
           />
         </div>
-        <button class="bg-secondary px-4 py-2 text-white" @click="postComment">
-          Post Comment
+        <button
+          class="bg-secondary px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+          @click="postComment"
+          :disabled="loading"
+        >
+          <font-awesome-icon
+            icon="spinner"
+            v-if="loading"
+            class="animate-spin"
+          />
+          <span v-else>Post comment</span>
         </button>
       </div>
       <div class="py-10 px-20">

@@ -4,6 +4,7 @@ import {
   faComment,
   faEnvelope,
   faSearch,
+  faSpinner,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -23,4 +24,5 @@ library.add(
   faLinkedin,
   faWhatsapp,
   faUser,
+  faSpinner,
 );
