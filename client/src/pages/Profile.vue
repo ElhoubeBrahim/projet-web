@@ -56,12 +56,12 @@ export default {
   <div class="profile py-20">
     <div class="container mx-auto px-4">
       <div class="flex flex-col lg:flex-row gap-20">
-        <div class="h-[400px] w-[400] shrink-0 sticky top-10">
+        <div class="h-[400px] w-[400px] shrink-0 sticky top-10">
           <div class="relative">
             <img
               :src="author.avatar"
               alt=""
-              class="h-[400px] w-[400] object-cover border"
+              class="h-[400px] w-[400px] object-cover border"
             />
             <div
               class="absolute top-2 left-2 bg-primary w-[400px] h-[400px] z-[-1]"
