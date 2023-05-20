@@ -42,14 +42,14 @@ export default {
           class="w-full h-[600px] object-cover mb-8"
         />
         <div class="mb-8">
-          <div class="flex gap-2 items-center mb-2">
+          <router-link :to="`/profile/${article.author.id}`" class="flex gap-2 items-center mb-2">
             <img
               :src="article.author.avatar"
               alt=""
               class="h-[30px] w-[30px] border rounded-full object-cover"
             />
             <span>{{ article.author.username }}</span>
-          </div>
+          </router-link>
           <div class="flex items-center gap-2 text-placeholder mb-4 text-sm">
             <span>
               {{

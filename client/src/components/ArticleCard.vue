@@ -36,14 +36,14 @@ export default {
         <span class="bg-placeholder h-[5px] w-[5px] block rounded"></span>
         <span>{{ article._count.comments }} comments</span>
       </div>
-      <div class="flex gap-2 items-center">
+      <router-link :to="`/profile/${article.author.id}`" class="flex gap-2 items-center">
         <img
           :src="article.author.avatar"
           alt=""
           class="h-[30px] w-[30px] border rounded-full object-cover"
         />
         <span class="text-sm">{{ article.author.username }}</span>
-      </div>
+      </router-link>
     </div>
   </article>
 </template>

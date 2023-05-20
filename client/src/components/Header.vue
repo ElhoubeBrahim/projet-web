@@ -84,7 +84,7 @@ export default {
         @click="dropdownOpen = !dropdownOpen"
       />
     </div>
-    <div class="border-y border-y-secondary">
+    <div class="border-y border-y-secondary bg-primary-light">
       <div class="container mx-auto px-4">
         <nav>
           <ul class="flex items-center flex-wrap">

@@ -20,7 +20,9 @@ export default {
       class="h-[100px] w-[100px] object-cover border"
     />
     <div>
-      <h3 class="font-semibold text-lg">{{ author.username }}</h3>
+      <router-link :to="`/profile/${author.id}`">
+        <h3 class="font-semibold text-lg">{{ author.username }}</h3>
+      </router-link>
       <div class="flex items-center gap-2 text-placeholder mb-4 text-xs">
         <span> Joined {{ formattedCreatedAt }} </span>
         <span class="bg-placeholder h-[5px] w-[5px] block rounded"></span>
