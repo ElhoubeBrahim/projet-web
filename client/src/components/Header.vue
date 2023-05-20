@@ -1,4 +1,6 @@
 <script>
+import { getCategories } from "../services/categories";
+
 export default {
   name: "Header",
   data: () => ({
@@ -8,49 +10,23 @@ export default {
         path: "/",
       },
       {
-        name: "Programming",
-        path: "/",
-      },
-      {
-        name: "Data Science",
-        path: "/",
-      },
-      {
-        name: "Beauty",
-        path: "/",
-      },
-      {
-        name: "Productivity",
-        path: "/",
-      },
-      {
-        name: "Machine Learning",
-        path: "/",
-      },
-      {
-        name: "Politics",
-        path: "/",
-      },
-      {
-        name: "Leadership",
-        path: "/",
-      },
-      {
-        name: "Marketing",
-        path: "/",
-      },
-      {
-        name: "UX Design",
-        path: "/",
-      },
-      {
-        name: "Business",
-        path: "/",
+        name: "Explore",
+        path: "/explore",
       },
     ],
     dropdownOpen: false,
     search: "",
   }),
+  async mounted() {
+    const categories = await getCategories();
+    this.navLinks = [
+      ...this.navLinks,
+      ...categories.map((category) => ({
+        name: category.name,
+        path: `/explore/${category.id}`,
+      })),
+    ];
+  },
 };
 </script>
 

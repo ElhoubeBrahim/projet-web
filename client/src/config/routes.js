@@ -6,6 +6,7 @@ import ReadArticle from "../pages/ReadArticle.vue";
 const routes = [
   { path: "/", component: Home, meta: { showFooter: true } },
   { path: "/explore", component: Explore, meta: { showFooter: false } },
+  { path: "/explore/:category", component: Explore, meta: { showFooter: false } },
   { path: "/read/:id", component: ReadArticle, meta: { showFooter: true } },
 ];
 

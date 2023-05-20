@@ -15,6 +15,7 @@ export default {
       searchInput: null,
       loading: false,
       finished: false,
+      category: [this.$route.params.category] || null,
       links: [
         "Help",
         "Status",
@@ -32,6 +33,7 @@ export default {
       page: this.page,
       limit: 10,
       search: this.search,
+      categories: this.category,
     });
     this.categories = await getCategories();
 
@@ -52,6 +54,7 @@ export default {
         page: this.page,
         limit: 10,
         search: this.search,
+        categories: this.category,
       });
       if (articles.length === 0) {
         this.finished = true;
@@ -116,13 +119,14 @@ export default {
               />
             </div>
             <div class="flex flex-wrap">
-              <div
+              <router-link
                 v-for="category in categories"
                 :key="category.id"
+                :to="`/explore/${category.id}`"
                 class="bg-primary-light border border-secondary px-4 py-2 rounded-full text-secondary text-sm mr-2 mb-2 cursor-pointer hover:bg-primary transition"
               >
                 {{ category.name }}
-              </div>
+              </router-link>
             </div>
             <hr class="border-t border-t-primary my-4" />
             <div class="flex flex-wrap px-4">
