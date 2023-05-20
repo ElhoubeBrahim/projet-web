@@ -36,6 +36,16 @@ export default class AuthController {
     });
   }
 
+  public static async getUser(req: Request, res: Response) {
+    const id = Number(req.params.id);
+    const user = await UserService.findById(id);
+
+    res.status(200).json({
+      status: "success",
+      data: user,
+    });
+  }
+
   public static async register(req: Request, res: Response) {
     // Get user data
     const userData: UserRequest = {
@@ -85,7 +95,7 @@ export default class AuthController {
     }
 
     // Check if the password is correct
-    const passwordMatch = bcrypt.compareSync(userData.password, user.password);
+    const passwordMatch = bcrypt.compareSync(userData.password, user.password || "");
     if (!passwordMatch) {
       res.status(401).json({
         status: "error",
