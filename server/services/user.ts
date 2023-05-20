@@ -26,7 +26,15 @@ export default class UserService {
         : {
             createdAt: "desc",
           },
-      include: {
+      select: {
+        id: true,
+        username: true,
+        avatar: true,
+        email: true,
+        profession: true,
+        role: true,
+        createdAt: true,
+
         _count: {
           select: {
             articles: true,
@@ -67,6 +75,22 @@ export default class UserService {
     return prisma.user.findUnique({
       where: {
         [key]: value,
+      },
+      select: {
+        id: true,
+        username: true,
+        avatar: true,
+        email: true,
+        profession: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+
+        _count: {
+          select: {
+            articles: true,
+          },
+        },
       },
     });
   }
