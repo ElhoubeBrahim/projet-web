@@ -5,7 +5,13 @@ export const getTrendingArticles = async () => {
   return response.data.data;
 };
 
-export const getArticles = async ({ page, limit, search, categories }) => {
+export const getArticles = async ({
+  page,
+  limit,
+  search,
+  categories,
+  authors,
+}) => {
   // Query params builder
   const params = new URLSearchParams();
   params.append("page", page || 1);
@@ -20,6 +26,10 @@ export const getArticles = async ({ page, limit, search, categories }) => {
 
   if (categories && categories.length > 0) {
     params.append("categories", categories.join(","));
+  }
+
+  if (authors && authors.length > 0) {
+    params.append("authors", authors.join(","));
   }
 
   // Fetch data
