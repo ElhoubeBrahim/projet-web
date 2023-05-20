@@ -99,4 +99,16 @@ export default class UserService {
       data: userData,
     });
   }
+
+  public static async update(
+    id: number,
+    userData: Partial<User>,
+  ): Promise<User> {
+    return prisma.user.update({
+      where: {
+        id,
+      },
+      data: userData,
+    });
+  }
 }
