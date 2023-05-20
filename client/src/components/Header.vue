@@ -49,6 +49,7 @@ export default {
       },
     ],
     dropdownOpen: false,
+    search: "",
   }),
 };
 </script>
@@ -72,6 +73,14 @@ export default {
             type="text"
             placeholder="Search"
             class="px-4 py-2 pl-6 outline-none"
+            v-model="search"
+            @keypress="
+              $event.key == 'Enter' &&
+                $router.push({
+                  path: '/explore',
+                  query: { search: search },
+                })
+            "
           />
           <font-awesome-icon
             icon="search"

@@ -11,6 +11,8 @@ export default {
       articles: [],
       categories: [],
       page: 1,
+      search: this.$route.query.search || null,
+      searchInput: null,
       loading: false,
       finished: false,
       links: [
@@ -29,6 +31,7 @@ export default {
     this.articles = await getArticles({
       page: this.page,
       limit: 10,
+      search: this.search,
     });
     this.categories = await getCategories();
 
@@ -48,6 +51,7 @@ export default {
       const articles = await getArticles({
         page: this.page,
         limit: 10,
+        search: this.search,
       });
       if (articles.length === 0) {
         this.finished = true;
@@ -66,14 +70,29 @@ export default {
     <div class="container mx-auto px-4">
       <div class="grid lg:grid-cols-4 gap-4">
         <div class="col-span-3">
-          <ArticleCard
-            v-for="article in articles"
-            :key="article.id"
-            :article="article"
-            thumbnail="large"
-            class="mb-8"
-          />
-          <ArticleCardSkeleton v-if="loading" />
+          <div
+            class="text-2xl mb-8 pb-4 border-b border-b-secondary lg:w-[80%]"
+            v-if="search"
+          >
+            Search results for:
+            <span class="text-secondary font-semibold">{{ search }}</span>
+          </div>
+
+          <div v-if="articles.length">
+            <ArticleCard
+              v-for="article in articles"
+              :key="article.id"
+              :article="article"
+              thumbnail="large"
+              class="mb-8"
+            />
+            <ArticleCardSkeleton v-if="loading" />
+          </div>
+          <div v-else>
+            <div class="text-3xl py-10 text-[#bbb] font-bold">
+              No articles found
+            </div>
+          </div>
         </div>
         <div class="col-span-1">
           <div class="sticky top-10">
@@ -81,6 +100,14 @@ export default {
               <input
                 type="text"
                 placeholder="Search ..."
+                v-model="searchInput"
+                @keypress="
+                  $event.key == 'Enter' &&
+                    $router.push({
+                      path: '/explore',
+                      query: { search: searchInput },
+                    })
+                "
                 class="px-4 py-2 bg-primary outline-none border-none pr-10 text-secondary w-full placeholder:text-secondary"
               />
               <font-awesome-icon
