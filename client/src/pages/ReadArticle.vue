@@ -4,6 +4,7 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import ArticleCard from "../components/ArticleCard.vue";
 import CommentsModal from "../components/CommentsModal.vue";
 import { getComments } from "../services/comments";
+import UserAvatar from '../components/UserAvatar.vue';
 
 export default {
   name: "Explore",
@@ -25,7 +26,7 @@ export default {
   methods: {
     formatDistanceToNow,
   },
-  components: { ArticleCard, CommentsModal },
+  components: { ArticleCard, CommentsModal, UserAvatar },
 };
 </script>
 
@@ -42,14 +43,7 @@ export default {
           class="w-full h-[600px] object-cover mb-8"
         />
         <div class="mb-8">
-          <router-link :to="`/profile/${article.author.id}`" class="flex gap-2 items-center mb-2">
-            <img
-              :src="article.author.avatar"
-              alt=""
-              class="h-[30px] w-[30px] border rounded-full object-cover"
-            />
-            <span>{{ article.author.username }}</span>
-          </router-link>
+          <UserAvatar :user="article.author" />
           <div class="flex items-center gap-2 text-placeholder mb-4 text-sm">
             <span>
               {{

@@ -1,7 +1,9 @@
 <script>
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import UserAvatar from './UserAvatar.vue';
 
 export default {
+	components: { UserAvatar },
   name: "ArticleCard",
   props: ["article", "thumbnail"],
   methods: {
@@ -36,14 +38,7 @@ export default {
         <span class="bg-placeholder h-[5px] w-[5px] block rounded"></span>
         <span>{{ article._count.comments }} comments</span>
       </div>
-      <router-link :to="`/profile/${article.author.id}`" class="flex gap-2 items-center">
-        <img
-          :src="article.author.avatar"
-          alt=""
-          class="h-[30px] w-[30px] border rounded-full object-cover"
-        />
-        <span class="text-sm">{{ article.author.username }}</span>
-      </router-link>
+      <UserAvatar :user="article.author" />
     </div>
   </article>
 </template>
