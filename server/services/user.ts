@@ -76,16 +76,7 @@ export default class UserService {
       where: {
         [key]: value,
       },
-      select: {
-        id: true,
-        username: true,
-        avatar: true,
-        email: true,
-        profession: true,
-        role: true,
-        createdAt: true,
-        updatedAt: true,
-
+      include: {
         _count: {
           select: {
             articles: true,
