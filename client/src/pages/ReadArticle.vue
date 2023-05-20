@@ -19,7 +19,7 @@ export default {
   async mounted() {
     this.article = await getArticle(this.$route.params.id);
     this.comments = await getComments(this.$route.params.id);
-    this.relatedArticles = await getArticles(1, 3);
+    this.relatedArticles = await getArticles(1, 4);
     this.loading = false;
   },
   methods: {
@@ -106,13 +106,14 @@ export default {
           <h3 class="font-brand font-semibold text-2xl text-secondary mb-8">
             Recommended for you
           </h3>
-          <ArticleCard
-            v-for="article in relatedArticles"
-            :key="article.id"
-            :article="article"
-            thumbnail="large"
-            class="mb-8"
-          />
+          <div class="grid gap-4 lg:grid-cols-2 mb-10">
+            <ArticleCard
+              v-for="article in relatedArticles"
+              :key="article.id"
+              :article="article"
+              class="mb-8"
+            />
+          </div>
         </div>
       </div>
     </div>
