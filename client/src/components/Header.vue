@@ -1,7 +1,10 @@
 <script>
+import { getLoggedinUser } from '../services/auth';
 import { getCategories } from "../services/categories";
+import UserDropdown from "./UserDropdown.vue";
 
 export default {
+  components: { UserDropdown },
   name: "Header",
   data: () => ({
     navLinks: [
@@ -16,6 +19,7 @@ export default {
     ],
     dropdownOpen: false,
     search: "",
+    isLoggedin: false,
   }),
   async mounted() {
     const categories = await getCategories();
@@ -26,6 +30,8 @@ export default {
         path: `/explore/${category.id}`,
       })),
     ];
+
+    this.isLoggedin = getLoggedinUser();
   },
 };
 </script>
@@ -63,7 +69,10 @@ export default {
             class="absolute left-0 top-3 text-secondary"
           />
         </div>
-        <div class="flex items-center gap-4">
+        <div v-if="isLoggedin">
+          <UserDropdown />
+        </div>
+        <div class="flex items-center gap-4" v-else>
           <router-link
             to="/login"
             class="text-secondary font-semibold hover:underline"

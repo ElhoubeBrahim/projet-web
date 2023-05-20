@@ -23,7 +23,7 @@ export default {
 
 <template>
   <div>
-    <Header />
+    <Header :key="$route.fullPath" />
     <router-view :key="$route.fullPath" />
     <Footer v-if="showFooter" />
   </div>
