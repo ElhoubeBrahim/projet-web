@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import UserService from "../services/user";
 import fs from "fs";
 import path from "path";
+import bcrypt from "bcrypt";
 
 export default class UsersController {
   public static async changeAvatar(req: Request, res: Response) {
@@ -37,5 +38,38 @@ export default class UsersController {
 
     // Return image file as response
     res.end(file);
+  }
+
+  public static async updatePassword(req: Request, res: Response) {
+    // Get user data
+    const oldPassword = req.body.oldPassword;
+    const password = req.body.password;
+
+    // Validate password
+    if (!password || password.length < 6) {
+      return res.status(400).json({
+        status: "error",
+        message: "Password must be at least 6 characters long",
+      });
+    }
+
+    // Check if old password is correct
+    if (!bcrypt.compareSync(oldPassword, req.user.password)) {
+      return res.status(400).json({
+        status: "error",
+        message: "The password is incorrect",
+      });
+    }
+
+    // Update user
+    const updatedUser = await UserService.update(req.user.id, {
+      password,
+    });
+
+    // Return updated user as JSON response
+    res.json({
+      status: "success",
+      data: updatedUser,
+    });
   }
 }

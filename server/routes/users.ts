@@ -23,5 +23,6 @@ usersRoutes.post(
   UsersController.changeAvatar,
 );
 usersRoutes.get("/avatar/:name", UsersController.getAvatar);
+usersRoutes.post("/update/password", authMiddleware, UsersController.updatePassword);
 
 export { usersRoutes };
