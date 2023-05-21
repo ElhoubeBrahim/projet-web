@@ -116,6 +116,7 @@ export default class ArticlesService {
         title: article.title,
         image: "",
         content: article.content,
+        published: article.published,
         author: {
           connect: {
             id: author.id,
