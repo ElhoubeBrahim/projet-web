@@ -1,8 +1,10 @@
 <script>
 import { getLoggedinUser } from "../../services/auth";
 import { updatePassword } from "../../services/users";
+import InputField from '../InputField.vue';
 
 export default {
+	components: { InputField },
   name: "PasswordTab",
   data() {
     return {
@@ -50,30 +52,18 @@ export default {
       >
         {{ error}}
       </div>
-      <div class="relative mb-4">
-        <input
-          type="password"
-          placeholder="Old Password"
-          v-model="user.oldPassword"
-          class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-        />
-        <font-awesome-icon
-          icon="lock"
-          class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-        />
-      </div>
-      <div class="relative mb-4">
-        <input
-          type="password"
-          placeholder="New Password"
-          v-model="user.password"
-          class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-        />
-        <font-awesome-icon
-          icon="lock"
-          class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-        />
-      </div>
+      <InputField
+        type="password"
+        placeholder="Old Password"
+        icon="lock"
+        v-model="user.oldPassword"
+      />
+      <InputField
+        type="password"
+        placeholder="New Password"
+        icon="lock"
+        v-model="user.password"
+      />
       <div class="mt-4">
         <button
           :class="{

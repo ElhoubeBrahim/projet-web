@@ -1,10 +1,12 @@
 <script>
+import InputField from './InputField.vue';
 export default {
   name: "Footer",
 };
 </script>
 
-<template>
+
+    InputField<template>
   <footer
     class="text-white py-20"
     style="

@@ -1,8 +1,10 @@
 <script>
 import { getLoggedinUser, updateLoggedinUser } from "../../services/auth";
-import { updateAvatar, updateUser } from '../../services/users';
+import { updateAvatar, updateUser } from "../../services/users";
+import InputField from "../InputField.vue";
 
 export default {
+  components: { InputField },
   name: "ProfileTab",
   data() {
     return {
@@ -69,30 +71,18 @@ export default {
       </div>
     </div>
     <div class="lg:w-1/2 mx-auto">
-      <div class="relative mb-4">
-        <input
-          type="text"
-          placeholder="Username"
-          v-model="user.username"
-          class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-        />
-        <font-awesome-icon
-          icon="envelope"
-          class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-        />
-      </div>
-      <div class="relative mb-4">
-        <input
-          type="text"
-          placeholder="Profession"
-          v-model="user.profession"
-          class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-        />
-        <font-awesome-icon
-          icon="envelope"
-          class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-        />
-      </div>
+      <InputField
+        type="text"
+        placeholder="Username"
+        icon="user"
+        v-model="user.username"
+      />
+      <InputField
+        type="text"
+        placeholder="Profession"
+        icon="briefcase"
+        v-model="user.profession"
+      />
       <div class="mt-4">
         <button
           :class="{

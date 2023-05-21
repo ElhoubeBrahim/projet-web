@@ -1,4 +1,5 @@
 <script>
+import InputField from "../../components/InputField.vue";
 import { createUser } from "../../services/auth";
 
 export default {
@@ -19,17 +20,16 @@ export default {
     async login() {
       this.loading = true;
       this.error = false;
-
       const response = await createUser(this.user);
       if (response.status == "error") {
         this.error = true;
         this.loading = false;
         return;
       }
-
       this.$router.push("/login");
     },
   },
+  components: { InputField },
 };
 </script>
 
@@ -51,54 +51,31 @@ export default {
             Please enter valid data
           </div>
           <div class="mb-8"></div>
-          <div class="relative mb-4">
-            <input
-              type="text"
-              placeholder="Username"
-              v-model="user.username"
-              class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-            />
-            <font-awesome-icon
-              icon="envelope"
-              class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-            />
-          </div>
-          <div class="relative mb-4">
-            <input
-              type="email"
-              placeholder="example@example.com"
-              v-model="user.email"
-              class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-            />
-            <font-awesome-icon
-              icon="envelope"
-              class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-            />
-          </div>
-          <div class="relative mb-4">
-            <input
-              type="text"
-              placeholder="Profession"
-              v-model="user.profession"
-              class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-            />
-            <font-awesome-icon
-              icon="envelope"
-              class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-            />
-          </div>
-          <div class="relative mb-8">
-            <input
-              type="password"
-              placeholder="Password"
-              v-model="user.password"
-              class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-            />
-            <font-awesome-icon
-              icon="lock"
-              class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-            />
-          </div>
+          <InputField
+            type="text"
+            placeholder="Username"
+            icon="user"
+            v-model="user.username"
+          />
+          <InputField
+            type="email"
+            placeholder="example@example.com"
+            icon="envelope"
+            v-model="user.email"
+          />
+          <InputField
+            type="text"
+            placeholder="Profession"
+            icon="briefcase"
+            v-model="user.profession"
+          />
+          <InputField
+            type="password"
+            placeholder="Password"
+            icon="lock"
+            v-model="user.password"
+            class="mb-4"
+          />
           <button
             class="bg-secondary px-8 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             @click="login"

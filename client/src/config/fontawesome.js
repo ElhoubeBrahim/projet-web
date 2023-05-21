@@ -1,6 +1,7 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
+  faBriefcase,
   faComment,
   faEnvelope,
   faLock,
@@ -27,4 +28,5 @@ library.add(
   faUser,
   faSpinner,
   faLock,
+  faBriefcase,
 );

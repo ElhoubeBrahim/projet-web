@@ -1,6 +1,7 @@
 <script>
 import { createComment } from "../services/comments";
 import CommentCard from "./CommentCard.vue";
+import InputField from "./InputField.vue";
 
 export default {
   name: "CommentsModal",
@@ -23,7 +24,7 @@ export default {
       this.loading = false;
     },
   },
-  components: { CommentCard },
+  components: { CommentCard, InputField },
 };
 </script>
 
@@ -36,31 +37,19 @@ export default {
     <div class="bg-white mx-4 my-10 lg:mx-auto lg:w-[80%]">
       <div class="bg-primary-light border-b border-b-secondary p-8 px-20">
         <h3 class="text-xl mb-8">Add comment</h3>
-        <div class="grid lg:grid-cols-2 gap-4 mb-4">
-          <div class="relative">
-            <input
-              type="text"
-              placeholder="username"
-              v-model="comment.name"
-              class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-            />
-            <font-awesome-icon
-              icon="user"
-              class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-            />
-          </div>
-          <div class="relative">
-            <input
-              type="email"
-              placeholder="example@example.com"
-              v-model="comment.email"
-              class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-            />
-            <font-awesome-icon
-              icon="envelope"
-              class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-            />
-          </div>
+        <div class="grid lg:grid-cols-2 gap-4">
+          <InputField
+            type="text"
+            placeholder="username"
+            icon="user"
+            v-model="comment.name"
+          />
+          <InputField
+            type="email"
+            placeholder="example@example.com"
+            icon="envelope"
+            v-model="comment.email"
+          />
         </div>
         <div class="relative mb-4">
           <textarea

@@ -1,7 +1,9 @@
 <script>
+import InputField from '../../components/InputField.vue';
 import { login, storeUser } from "../../services/auth";
 
 export default {
+	components: { InputField },
   name: "Login",
   data() {
     return {
@@ -48,30 +50,18 @@ export default {
             Invalid credentials
           </div>
           <div class="mb-8"></div>
-          <div class="relative mb-4">
-            <input
-              type="email"
-              placeholder="example@example.com"
-              v-model="user.email"
-              class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-            />
-            <font-awesome-icon
-              icon="envelope"
-              class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-            />
-          </div>
-          <div class="relative mb-8">
-            <input
-              type="password"
-              placeholder="Password"
-              v-model="user.password"
-              class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
-            />
-            <font-awesome-icon
-              icon="lock"
-              class="absolute top-1/2 left-4 transform -translate-y-1/2 text-secondary"
-            />
-          </div>
+          <InputField
+            type="email"
+            placeholder="example@example.com"
+            icon="envelope"
+            v-model="user.email"
+          />
+          <InputField
+            type="password"
+            placeholder="Password"
+            icon="lock"
+            v-model="user.password"
+          />
           <button
             class="bg-secondary px-8 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             @click="login"
