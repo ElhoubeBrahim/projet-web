@@ -96,7 +96,7 @@ export default class UserService {
 
   public static async create(userData: UserRequest): Promise<User> {
     return prisma.user.create({
-      data: userData,
+      data: { ...userData, avatar: "/default/user.png" },
     });
   }
 
