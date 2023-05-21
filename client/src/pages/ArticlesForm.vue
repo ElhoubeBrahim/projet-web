@@ -1,4 +1,5 @@
 <script>
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import InputField from "../components/InputField.vue";
 import {
   createArticle,
@@ -13,6 +14,23 @@ export default {
   name: "ArticlesForm",
   data() {
     return {
+      editor: ClassicEditor,
+      editorConfig: {
+        toolbar: [
+          "undo",
+          "redo",
+          "|",
+          "heading",
+          "|",
+          "bold",
+          "italic",
+          "link",
+          "|",
+          "bulletedList",
+          "numberedList",
+        ],
+        placeholder: "Article Content",
+      },
       article: {
         title: "",
         content: "",
@@ -147,7 +165,13 @@ export default {
           <div class="text-red-500 text-xs mt-1">{{ errors.categoryIds }}</div>
         </div>
         <div class="relative mb-4">
-          <textarea
+          <ckeditor
+            :editor="editor"
+            v-model="article.content"
+            :config="editorConfig"
+            class="h-[300px]"
+          ></ckeditor>
+          <!-- <textarea
             placeholder="Article Content"
             v-model="article.content"
             class="px-4 py-2 bg-primary outline-none text-secondary w-full placeholder:text-secondary h-[300px]"
@@ -155,7 +179,7 @@ export default {
           ></textarea>
           <div class="absolute bottom-2 right-2 text-xs text-gray-500">
             {{ article.content.length }} / 5000
-          </div>
+          </div> -->
           <div class="text-red-500 text-xs mt-1">{{ errors.content }}</div>
         </div>
         <div class="mb-4">

@@ -28,7 +28,8 @@ img {
   );
 }
 
-.article-content h2 {
+.article-content h2,
+.ck-content h2 {
   font-size: 1.2rem;
   font-family: "Noto Sans", sans-serif;
   margin-bottom: 1rem;
@@ -36,6 +37,27 @@ img {
   font-weight: bold;
 }
 
-.article-content p {
+.article-content p,
+.ck-content p {
+  margin-bottom: 0.5rem;
+}
+
+.article-content a,
+.ck-content a {
+  @apply text-secondary;
+  text-decoration: underline;
+}
+
+.article-content a:hover,
+.ck-content a:hover {
+  text-decoration: none;
+}
+
+.article-content ul,
+.article-content ol,
+.ck-content ul,
+.ck-content ol {
+  list-style: disc;
+  margin-left: 2rem;
   margin-bottom: 0.5rem;
 }
