@@ -1,6 +1,11 @@
 <script>
 import InputField from "../components/InputField.vue";
-import { createArticle, uploadThumbnail } from "../services/articles";
+import {
+  createArticle,
+  getArticle,
+  updateArticle,
+  uploadThumbnail,
+} from "../services/articles";
 import { getCategories } from "../services/categories";
 
 export default {
@@ -13,8 +18,9 @@ export default {
         content: "",
         category: null,
         published: false,
-        thumbnail: null,
+        image: null,
       },
+      isEdit: this.$route.params.id ? true : false,
       categories: [],
       image: null,
       errors: {},
@@ -22,6 +28,13 @@ export default {
     };
   },
   async mounted() {
+    if (this.isEdit) {
+      this.article = await getArticle(this.$route.params.id);
+      this.article.category =
+        this.article.categories.length > 0
+          ? this.article.categories[0].id
+          : null;
+    }
     this.categories = await getCategories();
   },
   methods: {
@@ -30,10 +43,24 @@ export default {
       this.loading = true;
 
       try {
-        this.article.categoryIds = [this.article.category];
-        const article = await createArticle(this.article);
-        this.uploadImage(article.id);
-        
+        const data = {
+          title: this.article.title,
+          content: this.article.content,
+          categoryIds: [this.article.category],
+          published: this.article.published,
+        };
+
+        let article = null;
+        if (this.isEdit) {
+          article = await updateArticle(this.article.id, data);
+        } else {
+          article = await createArticle(data);
+        }
+
+        if (this.image && article) {
+          this.uploadImage(article.id);
+        }
+
         this.$router.push(`/read/${article.id}`);
       } catch (error) {
         console.log(error);
@@ -43,7 +70,7 @@ export default {
     },
     async uploadImage(articleId) {
       let imageData = new FormData();
-      imageData.append("image", this.article.thumbnail);
+      imageData.append("image", this.image);
 
       try {
         await uploadThumbnail(articleId, imageData);
@@ -53,15 +80,15 @@ export default {
     },
     previewImage(event) {
       // Store file
-      this.article.thumbnail = event.target.files[0];
+      this.image = event.target.files[0];
       // Preview it
       let reader = new FileReader();
       let vm = this;
 
       reader.onload = (e) => {
-        vm.image = e.target.result;
+        vm.article.image = e.target.result;
       };
-      reader.readAsDataURL(this.article.thumbnail);
+      reader.readAsDataURL(this.image);
     },
   },
 };
@@ -71,11 +98,13 @@ export default {
   <div class="profile py-20">
     <div class="container mx-auto px-4">
       <div class="lg:w-1/2 mx-auto">
-        <h2 class="text-2xl font-brand text-secondary mb-8">Add New Article</h2>
+        <h2 class="text-2xl font-brand text-secondary mb-8">
+          {{ isEdit ? `Edit Article: ${article.title}` : "Add New Article" }}
+        </h2>
         <div class="mb-8">
           <label for="avatar" class="cursor-pointer">
             <img
-              :src="image"
+              :src="article.image"
               alt=""
               class="h-[400px] w-full object-cover border"
             />
@@ -129,7 +158,7 @@ export default {
             v-if="loading"
             class="animate-spin"
           />
-          <span v-else>Save Article</span>
+          <span v-else>{{ isEdit ? "Update Article" : "Save Article" }}</span>
         </button>
       </div>
     </div>

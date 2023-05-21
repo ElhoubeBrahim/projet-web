@@ -26,6 +26,11 @@ const routes = [
     component: ArticlesForm,
     meta: { showFooter: true },
   },
+  {
+    path: "/articles/:id/edit",
+    component: ArticlesForm,
+    meta: { showFooter: true },
+  },
 ];
 
 const router = VueRouter.createRouter({

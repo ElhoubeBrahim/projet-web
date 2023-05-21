@@ -57,6 +57,11 @@ export const createArticle = async (data) => {
   return response.data.data;
 };
 
+export const updateArticle = async (id, data) => {
+  const response = await axios.patch(`/articles/${id}`, data);
+  return response.data.data;
+};
+
 export const uploadThumbnail = async (id, data) => {
   const response = await axios.post(`articles/${id}/thumbnail`, data);
   return response.data.data;
