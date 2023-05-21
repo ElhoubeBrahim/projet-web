@@ -12,20 +12,25 @@ export default {
         password: "",
         profession: "",
       },
-      error: false,
+      errors: {},
       loading: false,
     };
   },
   methods: {
     async login() {
       this.loading = true;
-      this.error = false;
+      this.errors = {};
       const response = await createUser(this.user);
       if (response.status == "error") {
-        this.error = true;
+        for (const key in response.errors) {
+          this.errors[key] = response.errors[key][0];
+        }
+        this.$toast.error("Something went wrong");
         this.loading = false;
         return;
       }
+
+      this.$toast.success("Account created successfully");
       this.$router.push("/login");
     },
   },
@@ -44,36 +49,34 @@ export default {
       <div class="container mx-auto px-4 py-20">
         <div class="lg:w-[50%] mx-auto">
           <h2 class="text-3xl font-brand font-semibold mb-4">Create Account</h2>
-          <div
-            class="bg-red-500 text-white font-titles font px-4 py-2"
-            v-if="error"
-          >
-            Please enter valid data
-          </div>
           <div class="mb-8"></div>
           <InputField
             type="text"
             placeholder="Username"
             icon="user"
             v-model="user.username"
+            :error="errors.username"
           />
           <InputField
             type="email"
             placeholder="example@example.com"
             icon="envelope"
             v-model="user.email"
+            :error="errors.email"
           />
           <InputField
             type="text"
             placeholder="Profession"
             icon="briefcase"
             v-model="user.profession"
+            :error="errors.profession"
           />
           <InputField
             type="password"
             placeholder="Password"
             icon="lock"
             v-model="user.password"
+            :error="errors.password"
             class="mb-4"
           />
           <button

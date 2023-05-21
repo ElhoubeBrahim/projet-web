@@ -44,12 +44,12 @@ export default {
         <div class="lg:w-[50%] mx-auto">
           <h2 class="text-3xl font-brand font-semibold mb-4">Sign In</h2>
           <div
-            class="bg-red-500 text-white font-titles font px-4 py-2"
+            class="text-red-500 font-titles font"
             v-if="error"
           >
             Invalid credentials
           </div>
-          <div class="mb-8"></div>
+          <div class="mb-4"></div>
           <InputField
             type="email"
             placeholder="example@example.com"
