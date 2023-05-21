@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import UsersController from "../controllers/users";
 import authMiddleware from "../middlewares/auth";
+import { validateUpdateData } from "../validation/users";
 
 const usersRoutes = express.Router();
 const upload = multer({
@@ -23,6 +24,16 @@ usersRoutes.post(
   UsersController.changeAvatar,
 );
 usersRoutes.get("/avatar/:name", UsersController.getAvatar);
-usersRoutes.post("/update/password", authMiddleware, UsersController.updatePassword);
+usersRoutes.post(
+  "/update/password",
+  authMiddleware,
+  UsersController.updatePassword,
+);
+usersRoutes.post(
+  "/update/data",
+  authMiddleware,
+  validateUpdateData,
+  UsersController.updateData,
+);
 
 export { usersRoutes };

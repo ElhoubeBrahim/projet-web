@@ -72,4 +72,22 @@ export default class UsersController {
       data: updatedUser,
     });
   }
+
+  public static async updateData(req: Request, res: Response) {
+    // Get user data
+    const username = req.body.username;
+    const profession = req.body.profession;
+
+    // Update user
+    const updatedUser = await UserService.update(req.user.id, {
+      username,
+      profession,
+    });
+
+    // Return updated user as JSON response
+    res.json({
+      status: "success",
+      data: updatedUser,
+    });
+  }
 }
