@@ -1,10 +1,10 @@
 <script>
 import { getLoggedinUser } from "../../services/auth";
 import { updatePassword } from "../../services/users";
-import InputField from '../InputField.vue';
+import InputField from "../InputField.vue";
 
 export default {
-	components: { InputField },
+  components: { InputField },
   name: "PasswordTab",
   data() {
     return {
@@ -32,9 +32,11 @@ export default {
           oldPassword: "",
           password: "",
         };
+        this.$toast.success("Password updated successfully");
         this.$router.push(`/profile/${this.loggedinUser.id}`);
       } catch (error) {
         this.error = error.response.data.message;
+        this.$toast.error("Something went wrong");
       }
 
       this.loading = false;
@@ -47,10 +49,10 @@ export default {
   <div class="password-tab">
     <div class="lg:w-1/2 mx-auto">
       <div
-        class="bg-red-500 text-white font-titles font px-4 py-2 mb-8"
+        class="text-red-500 font-titles mb-4"
         v-if="error"
       >
-        {{ error}}
+        {{ error }}
       </div>
       <InputField
         type="password"

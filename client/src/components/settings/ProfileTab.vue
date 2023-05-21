@@ -21,14 +21,23 @@ export default {
     async updateInfo() {
       this.errors = {};
       this.loading = true;
-      const user = await updateUser({
-        username: this.user.username,
-        profession: this.user.profession,
-      });
-      this.loading = false;
+      try {
+        const user = await updateUser({
+          username: this.user.username,
+          profession: this.user.profession,
+        });
 
-      updateLoggedinUser(user);
-      this.$router.push(`/profile/${user.id}`);
+        updateLoggedinUser(user);
+        this.$toast.success("Profile updated successfully");
+        this.$router.push(`/profile/${user.id}`);
+      } catch (error) {
+        for (const key in error.response.data.errors) {
+          this.errors[key] = error.response.data.errors[key][0];
+        }
+        this.$toast.error("Something went wrong");
+      }
+
+      this.loading = false;
     },
     async uploadAvatar() {
       let avatarData = new FormData();
@@ -76,12 +85,14 @@ export default {
         placeholder="Username"
         icon="user"
         v-model="user.username"
+        :error="errors.username"
       />
       <InputField
         type="text"
         placeholder="Profession"
         icon="briefcase"
         v-model="user.profession"
+        :error="errors.profession"
       />
       <div class="mt-4">
         <button
