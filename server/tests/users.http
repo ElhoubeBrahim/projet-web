@@ -19,8 +19,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJuYW1lIjoiYnJhaGltIiwiYXZhdGFyIjpudWxsLCJlbWFpbCI6ImJyYWhpbS5lbGhvdWJlQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJENnaE1zMVdLQ3BqaDcxcVVvUGhMZWVCeGVKQTZTSjZIbU9JLmMxSWVpNFU3YmwwWWdWL2F5IiwicHJvZmVzc2lvbiI6IlRlc3RlciIsInJvbGUiOiJBVVRIT1IiLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTIwVDE5OjE1OjU0Ljk2OFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTIwVDE5OjE1OjU0Ljk2OFoiLCJfY291bnQiOnsiYXJ0aWNsZXMiOjB9LCJpYXQiOjE2ODQ2MTAxNzQsImV4cCI6MTY4NDY5NjU3NH0.sw9BYohhxBskGO9gl_oS1j55nzN4ZMY44zvlxeSvvvo
 
 {
-    "oldPassword": "password",
-    "password": "abcd1234"
+    "oldPassword": "abcd1234",
+    "password": "password"
 }
 
 ### Update user data

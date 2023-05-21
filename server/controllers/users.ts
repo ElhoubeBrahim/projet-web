@@ -3,6 +3,7 @@ import UserService from "../services/user";
 import fs from "fs";
 import path from "path";
 import bcrypt from "bcrypt";
+import { User } from "@prisma/client";
 
 export default class UsersController {
   public static async changeAvatar(req: Request, res: Response) {
@@ -54,7 +55,8 @@ export default class UsersController {
     }
 
     // Check if old password is correct
-    if (!bcrypt.compareSync(oldPassword, req.user.password)) {
+    const user = await UserService.findById(req.user.id) as User;
+    if (!bcrypt.compareSync(oldPassword, user.password)) {
       return res.status(400).json({
         status: "error",
         message: "The password is incorrect",
@@ -63,7 +65,7 @@ export default class UsersController {
 
     // Update user
     const updatedUser = await UserService.update(req.user.id, {
-      password,
+      password: bcrypt.hashSync(password, 10),
     });
 
     // Return updated user as JSON response
