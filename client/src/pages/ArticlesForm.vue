@@ -18,7 +18,7 @@ export default {
         content: "",
         category: null,
         published: false,
-        image: null,
+        image: "/default/article.png",
       },
       isEdit: this.$route.params.id ? true : false,
       categories: [],
@@ -102,12 +102,17 @@ export default {
           {{ isEdit ? `Edit Article: ${article.title}` : "Add New Article" }}
         </h2>
         <div class="mb-8">
-          <label for="avatar" class="cursor-pointer">
+          <label for="avatar" class="cursor-pointer relative">
             <img
               :src="article.image"
               alt=""
               class="h-[400px] w-full object-cover border"
             />
+            <div
+              class="absolute bottom-2 left-2 px-4 py-2 bg-[#00000080] text-white text-xs"
+            >
+              Choose image
+            </div>
           </label>
           <input id="avatar" type="file" hidden @change="previewImage" />
         </div>

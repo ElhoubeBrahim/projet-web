@@ -114,7 +114,7 @@ export default class ArticlesService {
     return await prisma.article.create({
       data: {
         title: article.title,
-        image: "",
+        image: "/default/article.png",
         content: article.content,
         published: article.published,
         author: {
