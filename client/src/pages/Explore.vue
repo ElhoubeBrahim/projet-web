@@ -88,6 +88,9 @@ export default {
               :article="article"
               thumbnail="large"
               class="mb-8"
+              @article-deleted="
+                articles = articles.filter((a) => a.id != $event)
+              "
             />
             <ArticleCardSkeleton v-if="loading" />
           </div>

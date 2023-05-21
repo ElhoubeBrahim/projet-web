@@ -4,6 +4,7 @@ import {
   faBars,
   faBriefcase,
   faComment,
+  faEllipsisV,
   faEnvelope,
   faLock,
   faSave,
@@ -33,4 +34,5 @@ library.add(
   faBriefcase,
   faAdd,
   faSave,
+  faEllipsisV,
 );

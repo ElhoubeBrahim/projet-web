@@ -60,4 +60,9 @@ export const createArticle = async (data) => {
 export const uploadThumbnail = async (id, data) => {
   const response = await axios.post(`articles/${id}/thumbnail`, data);
   return response.data.data;
-}
+};
+
+export const deleteArticle = async (id) => {
+  const response = await axios.delete(`/articles/${id}`);
+  return response.data.data;
+};
