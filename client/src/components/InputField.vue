@@ -1,7 +1,7 @@
 <script>
 export default {
   name: "InputField",
-  props: ["type", "placeholder", "icon", "value"],
+  props: ["type", "placeholder", "icon", "modelValue"],
   methods: {
     handleInput(event) {
       this.$emit("update:modelValue", event.target.value);
@@ -16,6 +16,7 @@ export default {
       :type="type"
       :placeholder="placeholder"
       class="px-4 py-2 bg-primary outline-none border-none pl-10 text-secondary w-full placeholder:text-secondary"
+      :value="modelValue"
       @input="handleInput"
     />
     <font-awesome-icon
