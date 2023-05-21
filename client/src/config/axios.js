@@ -1,5 +1,10 @@
 import axios from "axios";
+import { getLoggedinUser } from "../services/auth";
+
+const user = getLoggedinUser();
 
 axios.defaults.baseURL = "http://localhost:8000/api";
-axios.defaults.headers["Authorization"] =
-  "Bearer " + localStorage.getItem("token");
+
+if (user) {
+  axios.defaults.headers["Authorization"] = "Bearer " + user.token;
+}

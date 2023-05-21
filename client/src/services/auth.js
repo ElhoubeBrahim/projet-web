@@ -31,3 +31,8 @@ export const storeUser = (user, token) => {
 export const getLoggedinUser = () => {
   return JSON.parse(window.localStorage.getItem("user"));
 };
+
+export const updateLoggedinUser = (user) => {
+  const token = getLoggedinUser().token;
+  storeUser(user, token);
+};
