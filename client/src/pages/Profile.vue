@@ -2,6 +2,7 @@
 import ArticleCard from "../components/ArticleCard.vue";
 import ArticleCardSkeleton from "../components/ArticleCardSkeleton.vue";
 import { getArticles } from "../services/articles";
+import { getLoggedinUser } from "../services/auth";
 import { getAuthor } from "../services/users";
 
 export default {
@@ -9,6 +10,7 @@ export default {
   data() {
     return {
       author: {},
+      loggedinUser: getLoggedinUser(),
       articles: [],
       page: 1,
       loading: false,
@@ -75,10 +77,18 @@ export default {
             </div>
           </div>
         </div>
-        <div>
-          <h3 class="text-xl mb-8 font-bold">
-            Posted by {{ author.username }}
-          </h3>
+        <div class="w-full">
+          <div class="flex flex-wrap justify-between items-center gap-10 mb-8">
+            <h3 class="text-xl font-bold">Posted by {{ author.username }}</h3>
+            <router-link
+              to="/articles/new"
+              class="bg-secondary px-4 py-2 text-white flex items-center gap-2"
+              v-if="loggedinUser.id === author.id"
+            >
+              <font-awesome-icon icon="add" />
+              <span>Add Article</span>
+            </router-link>
+          </div>
           <div v-if="articles.length">
             <ArticleCard
               v-for="article in articles"

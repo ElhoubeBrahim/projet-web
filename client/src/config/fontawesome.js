@@ -1,10 +1,12 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
+  faAdd,
   faBars,
   faBriefcase,
   faComment,
   faEnvelope,
   faLock,
+  faSave,
   faSearch,
   faSpinner,
   faUser,
@@ -29,4 +31,6 @@ library.add(
   faSpinner,
   faLock,
   faBriefcase,
+  faAdd,
+  faSave,
 );

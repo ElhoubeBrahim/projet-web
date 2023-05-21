@@ -6,6 +6,7 @@ import Profile from "../pages/Profile.vue";
 import Login from "../pages/auth/Login.vue";
 import Register from "../pages/auth/Register.vue";
 import Settings from "../pages/auth/Settings.vue";
+import ArticlesForm from "../pages/ArticlesForm.vue";
 
 const routes = [
   { path: "/", component: Home, meta: { showFooter: true } },
@@ -20,6 +21,11 @@ const routes = [
   { path: "/login", component: Login, meta: { showFooter: true } },
   { path: "/register", component: Register, meta: { showFooter: true } },
   { path: "/settings", component: Settings, meta: { showFooter: true } },
+  {
+    path: "/articles/new",
+    component: ArticlesForm,
+    meta: { showFooter: true },
+  },
 ];
 
 const router = VueRouter.createRouter({

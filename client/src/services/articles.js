@@ -51,3 +51,13 @@ export const getRelatedArticles = async (article, n = 4) => {
 
   return articles.filter((a) => a.id !== article.id);
 };
+
+export const createArticle = async (data) => {
+  const response = await axios.post("/articles", data);
+  return response.data.data;
+};
+
+export const uploadThumbnail = async (id, data) => {
+  const response = await axios.post(`articles/${id}/thumbnail`, data);
+  return response.data.data;
+}
