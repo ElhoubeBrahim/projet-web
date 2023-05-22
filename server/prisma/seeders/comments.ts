@@ -17,13 +17,13 @@ export default class commentsSeeder implements Seeder {
   }
 
   async run(): Promise<void> {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 200; i++) {
       await this._prisma.comment.create({
         data: {
           name: faker.person.fullName(),
           email: faker.internet.email(),
           content: faker.lorem.paragraph(),
-          articleId: faker.number.int({ min: 1, max: 30 }),
+          articleId: faker.number.int({ min: 1, max: 50 }),
         },
       });
     }
